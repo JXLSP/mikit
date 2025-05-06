@@ -1,0 +1,7 @@
+app:
+  broker: 127.0.0.1:6379
+  backend: ${app.broker}
+  default_queue: default_queue
+  max_retries: 3
+  retry_interval: 30
+  retry_jitter: True
