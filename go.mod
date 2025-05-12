@@ -9,6 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/godror/godror v0.48.2
 	github.com/jasonsoft/go-short-id v0.0.0-20180410073244-6ed30cc4305d
+	github.com/jinzhu/copier v0.4.0
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/lib/pq v1.10.9
 	github.com/spf13/cobra v1.9.1

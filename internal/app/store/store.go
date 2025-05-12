@@ -1,6 +1,14 @@
 package store
 
-import "gorm.io/gorm"
+import (
+	"sync"
+
+	"gorm.io/gorm"
+)
+
+var (
+	once sync.Once
+)
 
 type Store struct {
 	ds *gorm.DB
