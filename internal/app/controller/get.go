@@ -6,28 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (ctrl *TasksController) GetTask(ctx *gin.Context) {
-	uuid := ctx.Params.ByName("uuid")
-	if uuid == "" {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": 200,
-			"msg":  "参数是必须的",
-		})
-		return
-	}
-
-	task, err := ctrl.TUsecase.GetTaskByID(ctx, uuid)
+// GetTask 获取任务详情
+func (tc *TasksController) GetTask(c *gin.Context) {
+	taskID := c.Param("id")
+	task, err := tc.TUsecase.GetTaskByID(c.Request.Context(), taskID)
 	if err != nil {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": 200,
-			"msg":  "查询失败",
-		})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{
-		"code": 200,
-		"msg":  "ok",
-		"data": task,
-	})
+	c.JSON(http.StatusOK, task)
 }
